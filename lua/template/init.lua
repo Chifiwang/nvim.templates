@@ -128,10 +128,10 @@ function temp.get_temp_list()
         end
         local extension = Get_file_extention(name)
         if vim.filetype.match({ filename = name }) ~= nil or current_ext == extension then
-            if not res[extension] then
-                res[extension] = {}
+            if not res[current_ext] then
+                res[current_ext] = {}
             end
-            res[extension][#res[extension]+1] = name
+            res[current_ext][#res[current_ext]+1] = name
         end
         ::continue::
     end
