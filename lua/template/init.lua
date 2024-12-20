@@ -120,8 +120,12 @@ function temp.get_temp_list()
   result = vim.list_extend(result, link)
 
   for _, name in ipairs(result) do
+    if name == nil then
+        goto continue
+    end
     local extension = Get_file_extention(name)
     vim.notify('[Template] '.. extension)
+      ::continue::
   end
 
   vim.notify('[Template] ' .. dump(result))
