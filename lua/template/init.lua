@@ -83,7 +83,7 @@ renderer.render_line = function(line)
 end
 
 function Get_file_extention(url)
-  return url:match('^.+\\.(.+)$')
+  return url:match('^.+%.(.+)$')
 end
 
 local function dump(o)
