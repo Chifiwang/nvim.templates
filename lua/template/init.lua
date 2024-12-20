@@ -103,7 +103,7 @@ end
 
 function temp.get_temp_list()
   local current_buf = api.nvim_get_current_buf()
-  local current_ext = current_buf.extension
+  local current_ext = vim.bo.filetype
   -- Get template directory
   temp.temp_dir = fs.normalize(temp.temp_dir)
   local res = {}
