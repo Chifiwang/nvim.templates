@@ -164,6 +164,7 @@ function temp:parse_args(args)
     for _, v in pairs(args) do
         if type(v) ~= "string" then
             goto continue
+        end
         if v:find('%.%w+') then
             data.file = v
         end
