@@ -114,8 +114,8 @@ function temp.get_temp_list()
   --
   -- result = vim.list_extend(result, link)
   --
-  for _, name in ipairs(result) do
-    local extention = Get_file_extention(name)
+  -- for _, name in ipairs(result) do
+    -- local extention = Get_file_extention(name)
   --   local ft = vim.bo[current_buf].filetype == extention
   --
   --   if not ft and extention == "tpl" then
@@ -126,16 +126,16 @@ function temp.get_temp_list()
   --   end
   --
   --   if ft then
-      if not res[extention] then
-        res[extention] = {}
-      end
-      res[extention][#res[extention]+1] = name
+      -- if not res[extention] then
+        -- res[extention] = {}
+      -- end
+      -- res[extention][#res[extention]+1] = name
   --   else
   --     vim.notify('[Template.nvim] Could not find the filetype of template file ' .. name, vim.log.levels.INFO)
   --   end
-  end
+  -- end
 
-  vim.notify('[Template] ' .. dump(res))
+  vim.notify('[Template] ' .. dump(temp.temp_dir))
 
   return res
 end
