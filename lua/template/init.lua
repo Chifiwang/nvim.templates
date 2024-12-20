@@ -129,6 +129,12 @@ function temp.get_temp_list()
         local extension = Get_file_extention(name)
         local buf_extension = Get_file_extention(vim.api.nvim_buf_get_name(0))
         vim.notify('[Template] ' .. extension)
+
+        if extension == "tpl" then
+            local first_row = vim.fn.readfile(name, '', 1)[1]
+            extension = vim.split(first_row, '%s')
+        end
+
         if vim.filetype.match({ filename = name }) == current_ext
             or current_ext == extension or extension == buf_extension then
 
