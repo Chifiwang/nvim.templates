@@ -162,10 +162,13 @@ function temp:parse_args(args)
     local data = {}
 
     for _, v in pairs(args) do
+        if type(v) ~= "string" then
+            goto continue
         if v:find('%.%w+') then
             data.file = v
         end
         data.tp_name = v
+        ::continue::
     end
 
     return data
