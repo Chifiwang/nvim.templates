@@ -55,7 +55,7 @@ api.nvim_create_user_command('TemplateCreate', function(args)
     vim.notify('[template.nvim] please config the temp_dir variable')
     return
   end
-  local temp_loc = temp_dir .. '/' .. args
+  local temp_loc = temp_dir .. '/' .. args[1]
   vim.notify(temp_loc)
   vim.cmd(':edit ' .. temp_loc)
 end, {
