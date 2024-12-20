@@ -130,7 +130,7 @@ function temp.get_temp_list()
         local buf_extension = Get_file_extention(vim.api.nvim_buf_get_name(0))
         if extension == "tpl" then
             local first_row = vim.fn.readfile(name, '', 1)[1]
-            extension = vim.split(first_row, '%s')[1]
+            extension = vim.split(first_row, '%s')[2]
         end
         vim.notify('[Template] ' .. extension)
 
