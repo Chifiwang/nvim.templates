@@ -158,7 +158,7 @@ local function create_and_load(file)
     vim.cmd(':e ' .. file)
 end
 
-local function parse_args(args)
+function temp:parse_args(args)
     local data = {}
 
     for _, v in pairs(args) do
@@ -204,7 +204,7 @@ local function get_tpl(buf, name)
 end
 
 function temp:generate_template(args)
-    local data = parse_args(args)
+    local data = temp:parse_args(args)
 
     if data.file then
         create_and_load(data.file)
