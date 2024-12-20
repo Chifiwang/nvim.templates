@@ -62,7 +62,7 @@ local find_template = function(opts)
       actions.select_default:replace(function()
         actions.close(prompt_bufnr)
         local selection = action_state.get_selected_entry()
-        if not selection[1] then
+        if not selection then
             vim.notify("[Tempalte] No file selected")
             return false
         end
