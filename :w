@@ -136,7 +136,7 @@ function temp.get_temp_list()
         ::continue::
     end
 
-    vim.notify('[Template] ' .. dump(res))
+    -- vim.notify('[Template] ' .. dump(result))
 
     return res
 end
