@@ -48,3 +48,9 @@ end, {
     end
   end,
 })
+
+api.nvim_create_user_command('TemplateCreate', function(args)
+    local temp_loc = require('template').temp_dir .. '/' .. args[0]
+    vim.notify(temp_loc)
+    vim.cmd(':edit ' .. temp_loc)
+end)
