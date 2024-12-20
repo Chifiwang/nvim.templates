@@ -104,9 +104,9 @@ function temp.get_temp_list()
   temp.temp_dir = fs.normalize(temp.temp_dir)
   local res = {}
   --
-  -- local result = vim.fs.find(function(name)
-  --   return name:match('.*')
-  -- end, { type = 'file', path = temp.temp_dir, limit = math.huge })
+  local result = vim.fs.find(function(name)
+    return name:match('.*')
+  end, { type = 'file', path = temp.temp_dir, limit = math.huge })
   --
   -- local link = vim.fs.find(function(name)
   --   return name:match('.*')
@@ -135,7 +135,7 @@ function temp.get_temp_list()
   --   end
   -- end
 
-  vim.notify('[Template] ' .. dump(temp.temp_dir))
+  vim.notify('[Template] ' .. dump(result))
 
   return res
 end
