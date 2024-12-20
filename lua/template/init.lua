@@ -128,7 +128,7 @@ function temp.get_temp_list()
         end
         local extension = Get_file_extention(name)
         local buf_extension = Get_file_extention(vim.api.nvim_buf_get_name(0))
-        vim.notify('[Template] ' .. extension .. " " .. vim.filetype.match({filename=name}))
+        vim.notify('[Template] ' .. extension)
         if vim.filetype.match({ filename = name }) == current_ext
             or current_ext == extension or extension == buf_extension then
 
