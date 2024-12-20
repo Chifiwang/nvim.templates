@@ -126,11 +126,11 @@ function temp.get_temp_list()
         goto continue
     end
     local extension = Get_file_extention(name)
-    vim.notify('[Template] '.. extension)
+    -- vim.notify('[Template] '.. extension)
       ::continue::
   end
 
-  vim.notify('[Template] ' .. dump(result))
+  -- vim.notify('[Template] ' .. dump(result))
 
   return res
 end
