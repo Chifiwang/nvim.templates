@@ -126,7 +126,7 @@ function temp.get_temp_list()
         goto continue
     end
     local extension = Get_file_extention(name)
-    vim.notify('[Template] '.. extension .. vim.filetype.match({filename = name}))
+    vim.notify('[Template] '.. name .. " " .. vim.filetype.match({ filename = name}))
       ::continue::
   end
 
