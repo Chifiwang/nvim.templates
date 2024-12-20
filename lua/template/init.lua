@@ -87,23 +87,7 @@ function Get_file_extention(url)
     return url:match('^.+%.(.+)$')
 end
 
-local function dump(o)
-    if type(o) == 'table' then
-        local s = '{ '
-        for k, v in pairs(o) do
-            if type(k) ~= 'number' then
-                k = '"' .. k .. '"'
-            end
-            s = s .. '[' .. k .. '] = ' .. dump(v) .. ',\n'
-        end
-        return s .. '} '
-    else
-        return tostring(o)
-    end
-end
-
 function temp.get_temp_list()
-    local current_buf = api.nvim_get_current_buf()
     local current_ext = vim.bo.filetype
     -- Get template directory
     temp.temp_dir = fs.normalize(temp.temp_dir)
@@ -121,31 +105,29 @@ function temp.get_temp_list()
 
     result = vim.list_extend(result, link)
 
-    vim.notify('[Template] ' .. current_ext)
     for _, name in ipairs(result) do
         if name == nil then
             goto continue
         end
         local extension = Get_file_extention(name)
         local buf_extension = Get_file_extention(vim.api.nvim_buf_get_name(0))
-        if extension == "tpl" then
+        if extension == 'tpl' then
             local first_row = vim.fn.readfile(name, '', 1)[1]
             extension = vim.split(first_row, '%s')[2]
         end
-        vim.notify('[Template] ' .. extension)
 
-        if vim.filetype.match({ filename = name }) == current_ext
-            or current_ext == extension or extension == buf_extension then
-
+        if
+            vim.filetype.match({ filename = name }) == current_ext
+            or current_ext == extension
+            or extension == buf_extension
+        then
             if not res[current_ext] then
                 res[current_ext] = {}
             end
-            res[current_ext][#res[current_ext]+1] = name
+            res[current_ext][#res[current_ext] + 1] = name
         end
         ::continue::
     end
-
-    vim.notify('[Template] ' .. dump(res))
 
     return res
 end
