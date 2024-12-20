@@ -103,6 +103,7 @@ end
 
 function temp.get_temp_list()
   local current_buf = api.nvim_get_current_buf()
+  local current_ext = current_buf.extension
   -- Get template directory
   temp.temp_dir = fs.normalize(temp.temp_dir)
   local res = {}
@@ -119,6 +120,7 @@ function temp.get_temp_list()
 
   result = vim.list_extend(result, link)
 
+  vim.notify('[Template] '.. current_ext)
   for _, name in ipairs(result) do
     if name == nil then
         goto continue
