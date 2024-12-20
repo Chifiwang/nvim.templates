@@ -13,7 +13,7 @@ end, {
     complete = function(arg, line)
         local temp = require('template')
         if not temp.temp_dir then
-            vim.notify('[template.nvim] please config the temp_dir variable')
+            vim.notify('[Templates] please config the temp_dir variable')
             return {}
         end
 
@@ -53,16 +53,16 @@ api.nvim_create_user_command('TemplateCreate', function(args)
     local temp = require('template')
     local temp_dir = temp.temp_dir
     if not temp_dir then
-        vim.notify('[template.nvim] please config the temp_dir variable')
+        vim.notify('[Templates] please config the temp_dir variable')
         return
     end
     local file = temp:parse_args(args).file
     if not file then
-        vim.notify('[Template] please provide a file')
+        vim.notify('[Templates] please provide a file')
         return
     end
     local temp_loc = temp_dir .. '/' .. file
-    vim.notify(temp_loc)
+    vim.notify('[Templates] created new template at ' .. temp_loc)
     vim.cmd(':edit ' .. temp_loc)
 end, {
     nargs = 1,

@@ -12,7 +12,7 @@ local renderer = {
 ---@param replacer function(match: string): string
 renderer.register = function(expr, replacer)
     if renderer.expression_replacer_map[expr] then
-        vim.notify('The expression ' .. expr .. ' is registered already. Will not add the replacer.',
+        vim.notify('[Templates] The expression ' .. expr .. ' is registered already. Will not add the replacer.',
             vim.log.levels.ERROR)
         return
     end
@@ -150,7 +150,7 @@ local function create_and_load(file)
     file = current_path .. sep .. file
     local ok, fd = pcall(uv.fs_open, file, 'w', 420)
     if not ok then
-        vim.notify("Couldn't create file " .. file)
+        vim.notify("[Templates] Couldn't create file " .. file)
         return
     end
     uv.fs_close(fd)
@@ -290,7 +290,7 @@ function temp.setup(config)
     })
 
     if not config.temp_dir then
-        vim.notify('[template.nvim] please config the temp_dir variable')
+        vim.notify('[Templates] please config the temp_dir variable')
         return
     end
 
@@ -302,7 +302,7 @@ function temp.setup(config)
     local fts = vim.tbl_keys(temp.get_temp_list())
 
     if #fts == 0 then
-        vim.notify('[template.nvim] does not get the filetype in template dir')
+        vim.notify('[Templates] does not get the filetype in template dir')
         return
     end
 

@@ -30,7 +30,7 @@ local find_template = function(opts)
     if vim.fn.filereadable(file) == 0 then
       local ok, fd = pcall(vim.loop.fs_open, file, 'w', 420)
       if not ok then
-        vim.notify("Couldn't create file " .. file)
+        vim.notify("[Templates] Couldn't create file " .. file)
         return
       end
       vim.loop.fs_close(fd)
@@ -63,7 +63,7 @@ local find_template = function(opts)
         actions.close(prompt_bufnr)
         local selection = action_state.get_selected_entry()
         if not selection then
-            vim.notify("[Tempalte] No file selected")
+            vim.notify("[Templates] No file selected")
             return false
         end
         local tmp_name = vim.fn.fnamemodify(selection[1], ':t')
