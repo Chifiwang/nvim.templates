@@ -59,5 +59,5 @@ api.nvim_create_user_command('TemplateCreate', function(args)
   vim.notify(temp_loc)
   vim.cmd(':edit ' .. temp_loc)
 end, {
-  nargs = '1',
+  nargs = 1,
 })
