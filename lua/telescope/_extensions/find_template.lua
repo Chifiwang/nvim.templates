@@ -62,6 +62,10 @@ local find_template = function(opts)
       actions.select_default:replace(function()
         actions.close(prompt_bufnr)
         local selection = action_state.get_selected_entry()
+        if not selection[1] then
+            vim.notify("[Tempalte] No file selected")
+            return false
+        end
         local tmp_name = vim.fn.fnamemodify(selection[1], ':t')
         tmp_name = vim.split(tmp_name, '%.', { trimempty = true })[1]
 
