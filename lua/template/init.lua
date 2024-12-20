@@ -86,41 +86,56 @@ function Get_file_extention(url)
   return url:match("^.+\\.(.+)$")
 end
 
+local function dump(o)
+   if type(o) == 'table' then
+      local s = '{ '
+      for k,v in pairs(o) do
+         if type(k) ~= 'number' then k = '"'..k..'"' end
+         s = s .. '['..k..'] = ' .. dump(v) .. ','
+      end
+      return s .. '} '
+   else
+      return tostring(o)
+   end
+end
+
 function temp.get_temp_list()
-  local current_buf = api.nvim_get_current_buf()
+  -- local current_buf = api.nvim_get_current_buf()
   temp.temp_dir = fs.normalize(temp.temp_dir)
   local res = {}
-
-  local result = vim.fs.find(function(name)
-    return name:match('.*')
-  end, { type = 'file', path = temp.temp_dir, limit = math.huge })
-
-  local link = vim.fs.find(function(name)
-    return name:match('.*')
-  end, { type = 'link', path = temp.temp_dir, limit = math.huge })
-
-  result = vim.list_extend(result, link)
-
+  --
+  -- local result = vim.fs.find(function(name)
+  --   return name:match('.*')
+  -- end, { type = 'file', path = temp.temp_dir, limit = math.huge })
+  --
+  -- local link = vim.fs.find(function(name)
+  --   return name:match('.*')
+  -- end, { type = 'link', path = temp.temp_dir, limit = math.huge })
+  --
+  -- result = vim.list_extend(result, link)
+  --
   for _, name in ipairs(result) do
     local extention = Get_file_extention(name)
-    local ft = vim.bo[current_buf].filetype == extention
-
-    if not ft and extention == "tpl" then
-      local first_row = vim.fn.readfile(name, '', 1)[1]
-      extention = vim.split(first_row, '%s')[2]
-      print(extention)
-      ft = true
-    end
-
-    if ft then
+  --   local ft = vim.bo[current_buf].filetype == extention
+  --
+  --   if not ft and extention == "tpl" then
+  --     local first_row = vim.fn.readfile(name, '', 1)[1]
+  --     extention = vim.split(first_row, '%s')[2]
+  --     print(extention)
+  --     ft = true
+  --   end
+  --
+  --   if ft then
       if not res[extention] then
         res[extention] = {}
       end
       res[extention][#res[extention]+1] = name
-    -- else
-      -- vim.notify('[Template.nvim] Could not find the filetype of template file ' .. name, vim.log.levels.INFO)
-    end
+  --   else
+  --     vim.notify('[Template.nvim] Could not find the filetype of template file ' .. name, vim.log.levels.INFO)
+  --   end
   end
+
+  vim.notify('[Template] ' .. dump(res))
 
   return res
 end
