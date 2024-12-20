@@ -127,8 +127,10 @@ function temp.get_temp_list()
             goto continue
         end
         local extension = Get_file_extention(name)
-        vim.notify('[Template] ' .. extension)
-        if vim.filetype.match({ filename = name }) == current_ext or current_ext == extension then
+        vim.notify('[Template] ' .. extension .. " " .. vim.filetype.match({filename=name}))
+        if vim.filetype.match({ filename = name }) == current_ext
+            or current_ext == extension then
+
             if not res[current_ext] then
                 res[current_ext] = {}
             end
